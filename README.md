@@ -1,2 +1,2 @@
 ### 第一次作业
-./practice
+./practice/game_round.py
