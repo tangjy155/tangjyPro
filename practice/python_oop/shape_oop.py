@@ -89,15 +89,15 @@ class Square(Shape):
 if __name__ == "__main__":
     triangle = Triangle(3, 4, 5)
     print(f"边长为{triangle.get_sides()}的三角形，"
-          f"周长为{triangle.get_circumference()}，"
-          f"面积为{triangle.get_square()}")
+          f"周长为：{triangle.get_circumference()}，"
+          f"面积为：{triangle.get_square()}")
 
     rectangle = Rectangle(4, 5)
-    print(f"边长为{rectangle.get_sides()}的长方形，"
-          f"周长为{rectangle.get_circumference()}，"
-          f"面积为{rectangle.get_square()}")
+    print(f"边长为：{rectangle.get_sides()}的长方形，"
+          f"周长为：{rectangle.get_circumference()}，"
+          f"面积为：{rectangle.get_square()}")
 
     square = Square(4)
-    print(f"边长为{square.get_sides()}的正方形，"
-          f"周长为{square.get_circumference()}，"
-          f"面积为{square.get_square()}")
+    print(f"边长为：{square.get_sides()}的正方形，"
+          f"周长为：{square.get_circumference()}，"
+          f"面积为：{square.get_square()}")

@@ -12,13 +12,13 @@ class Furniture:
 # 桌子类
 class Table(Furniture):
     def __init__(self):
-        print("我是一张桌子")
+        print("我是一张桌子！")
 
 
 # 椅子类
 class Chair(Furniture):
     def __init__(self):
-        print("我是一张椅子")
+        print("我是一张椅子！")
 
 
 if __name__ == "__main__":

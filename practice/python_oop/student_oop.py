@@ -20,7 +20,7 @@ class Student:
         self._grade = grade
         self._stu_no = stu_no
 
-    # 获取学生分数
+    # 从全部分数的文件中获取当前学生的分数
     def get_score(self, filename):
         try:
             # 读取文件数据

@@ -22,13 +22,13 @@ class Animal:
 class Cat(Animal):
     def speak(self):
         color = self.get_color()
-        print(f"我是{color}的猫咪，我喵喵叫~~")
+        print(f"我是{color}的猫咪，我喵喵叫~~~")
 
 
 # 狗类
 class Dog(Animal):
     def speak(self):
-        print(f"我是{self._color}的小狗，我汪汪叫~~")
+        print(f"我是{self._color}的小狗，我汪汪叫~~~")
 
 
 if __name__ == "__main__":

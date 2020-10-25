@@ -19,7 +19,7 @@ class Manager:
 
 if __name__ == "__main__":
     kitty = Cat("kitty", 10, "白色")
-    bird = Bird("小鸟", 20, "灰色")
+    bird = Bird("小鸟", 20, "黑色")
 
     Manager(kitty).record_time()
     Manager(bird).record_time()

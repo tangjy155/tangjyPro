@@ -1,6 +1,6 @@
 ### Python脚本编写实战（一）
 ### 作业
-######./practice/game_round.py
+###### ./practice/game_round.py
 
 ### Python脚本编写实战（二）
 ### 作业1

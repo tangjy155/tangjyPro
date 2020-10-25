@@ -7,7 +7,7 @@ from practice.python_oop.tonglao import TongLao
 
 class XuZhu(TongLao):
     def read(self):
-        print("罪过罪过")
+        print("罪过罪过!")
 
     # 只有read方法，继承的fight_zms也被重写
     def fight_zms(self, enemy_hp, enemy_power):
