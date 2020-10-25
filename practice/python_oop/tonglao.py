@@ -26,10 +26,11 @@ class TongLao:
         self._hp -= enemy_power
         enemy_hp -= self._power
 
-        if self._hp > enemy_hp:
-            print("我赢了")
-        else:
-            print("我输了")
+        # if self._hp > enemy_hp:
+        #     print("我赢了")
+        # else:
+        #     print("我输了")
+        print("我赢了") if self._hp > enemy_hp else print("我输了")
 
 
 if __name__ == "__main__":
