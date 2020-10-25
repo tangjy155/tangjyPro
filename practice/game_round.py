@@ -24,6 +24,7 @@ def fight(enemy_hp, enemy_power, my_hp, my_power):
             print("我赢了!")
             break;
 
+
 if __name__ == "__main__":
     # 列表推导式生成敌人初始的hp、power
     hp = [x for x in range(990, 1010)]
