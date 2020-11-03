@@ -2,7 +2,7 @@
 # @Time     : 2020/10/30 20:17
 # @Author   : tangjy
 # @File     : test_calc.py
-
+import math
 
 import pytest
 import allure
@@ -24,9 +24,9 @@ class TestMul:
         [None, 2],
         [2, None]
     ])
-    def test_mul(self, a, b, c):
+    def test_mul_none(self, a, b):
         with pytest.raises(Exception) as e_info:
-            self.calc.mul(a, b)
+            assert self.calc.mul(a, b)
 
     @allure.story("非法字符")
     @pytest.mark.parametrize('a, b', [
@@ -34,34 +34,32 @@ class TestMul:
         ['q', 2],
         [2, '/']
     ])
-    def test_mul(self, a, b):
+    def test_mul_abnormal(self, a, b):
         with pytest.raises(Exception) as e_info:
-            self.calc.mul(a, b)
+            assert self.calc.mul(a, b)
 
     @allure.story("整数")
-    @pytest.mark.parametrize('a, b', [
-        [6, 2],
-        [-3, -2],
-        [4, -2]
+    @pytest.mark.parametrize('a, b, c', [
+        [6, 2, 12],
+        [-3, -2, 6],
+        [4, -2, -8]
     ])
-    def test_mul(self, a, b):
-        with pytest.raises(Exception) as e_info:
-            self.calc.mul(a, b)
+    def test_mul_int(self, a, b, c):
+        assert self.calc.mul(a, b) == c
 
     @allure.story("浮点数")
-    @pytest.mark.parametrize('a, b', [
-        [0.0000000000000000000000001, 9.9],
-        [1 / 3, 0.3]
+    @pytest.mark.parametrize('a, b, c', [
+        [0.0001, 9.9, 0.00099],
+        [1 / 3, 0.3, 0.3/3]
     ])
-    def test_mul(self, a, b):
-        with pytest.raises(Exception) as e_info:
-            self.calc.mul(a, b)
+    def test_mul_float(self, a, b, c):
+        assert self.calc.mul(a, b) == c
 
     @allure.story("分数和整数")
     @pytest.mark.parametrize('a, b, c', [
         [1 / 3, 3, 1]
     ])
-    def test_mul(self, a, b, c):
+    def test_mul_mix(self, a, b, c):
         assert self.calc.mul(a, b) == c
 
     @allure.story("表达式参数")
@@ -70,7 +68,7 @@ class TestMul:
         [2, 1 + 2, 6],
         [1 + 2, 1 + 3, 12]
     ])
-    def test_mul(self, a, b, c):
+    def test_mul_exp(self, a, b, c):
         assert self.calc.mul(a, b) == c
 
     @allure.story("零值")
@@ -79,7 +77,7 @@ class TestMul:
         [2, 0, 0],
         [0, 0, 0]
     ])
-    def test_mul(self, a, b, c):
+    def test_mul_zero(self, a, b, c):
         assert self.calc.mul(a, b) == c
 
     @allure.story("无限大")
@@ -97,39 +95,126 @@ class TestMul:
         [float("inf"), float("-inf"), float("-inf")],
         [float("-inf"), float("-inf"), float("inf")]
     ])
-    def test_mul(self, a, b, c):
+    def test_mul_inf(self, a, b, c):
         assert self.calc.mul(a, b) == c
 
     @allure.story("零值和无限大")
-    @pytest.mark.parametrize('a, b, c', [
-        [float("inf"), 0, 0],
-        [0, float("inf"), 0],
-        [0, float("-inf"), 0],
-        [float("-inf"), 0, 0]
+    @pytest.mark.parametrize('a, b', [
+        [float("inf"), 0 ],
+        [0, float("inf")],
+        [0, float("-inf")],
+        [float("-inf"), 0]
     ])
-    def test_mul(self, a, b, c):
-        assert self.calc.mul(a, b) == c
+    def test_mul_zero_and_inf(self, a, b, c):
+        assert math.isnan(self.calc.mul(a, b))
 
 
+@allure.feature("除法测试")
 class TestDiv:
-    # 空值
-    # 非法字符输入
-    # 整数
-    # 浮点数
-    # 正、负无限大
-    # 零值
+    def setup_class(self):
+        self.calc = Calc()
+
+    def setup(self):
+        pass
+
+    @allure.story("空值")
+    @pytest.mark.parametrize('a, b', [
+        [None, None],
+        [None, 2],
+        [2, None]
+    ])
+    def test_div_none(self, a, b):
+        with pytest.raises(Exception) as e_info:
+            assert self.calc.div(a, b)
+
+    @allure.story("非法字符")
+    @pytest.mark.parametrize('a, b', [
+        ['Q', '/'],
+        ['q', 2],
+        [2, '/']
+    ])
+    def test_div_abnormal(self, a, b):
+        with pytest.raises(Exception) as e_info:
+            assert self.calc.div(a, b)
+
+    @allure.story("整数")
+    @pytest.mark.parametrize('a, b, c', [
+        [6, 2, 3],
+        [-3, -2, 1.5],
+        [4, -2, -2]
+    ])
+    def test_div_int(self, a, b, c):
+        assert self.calc.div(a, b) == c
+
+    @allure.story("浮点数")
+    @pytest.mark.parametrize('a, b, c', [
+        [9.9, 0.1, 99.0],
+        [0.6, 0.3, 2.0]
+    ])
+    def test_div_float(self, a, b, c):
+        assert self.calc.div(a, b) == c
+
+    @allure.story("分数和整数")
+    @pytest.mark.parametrize('a, b, c', [
+        [1 / 3, 3, 1/9]
+    ])
+    def test_div_mix(self, a, b, c):
+        assert self.calc.div(a, b) == c
+
+    @allure.story("表达式参数")
+    @pytest.mark.parametrize('a, b, c', [
+        [1 + 2, 3, 1],
+        [6, 1 + 2, 2],
+        [4 + 2, 1 + 3, 2]
+    ])
+    def test_div_exp(self, a, b, c):
+        assert self.calc.div(a, b) == c
+
+    @allure.story("零值")
     @pytest.mark.parametrize('a, b', [
         [2, 0],
-        [0.2, 0],
         [0, 0]
     ])
-    @allure.story("除法测试")
-    def test_div(self, a, b):
-        with pytest.raises(Exception):
+    def test_div_zero(self, a, b, c):
+        with pytest.raises(Exception) as e_info:
             assert self.calc.div(a, b)
+
+    @allure.story("无限大")
+    @pytest.mark.parametrize('a, b, c', [
+        [float("inf"), 3, float("inf")],
+        [2, float("inf"), float("inf")],
+        [float("inf"), -3, float("-inf")],
+        [-2, float("inf"), float("-inf")],
+        [2, float("-inf"), float("-inf")],
+        [float("-inf"), 3, float("-inf")],
+        [-2, float("-inf"), float("inf")],
+        [float("-inf"), -3, float("inf")],
+        [float("inf"), float("inf"), float("inf")],
+        [float("-inf"), float("inf"), float("-inf")],
+        [float("inf"), float("-inf"), float("-inf")],
+        [float("-inf"), float("-inf"), float("inf")]
+    ])
+    def test_div_inf(self, a, b, c):
+        assert self.calc.div(a, b) == c
+
+    @allure.story("零值和无限大")
+    @pytest.mark.parametrize('a, b', [
+        [float("inf"), 0 ],
+        [0, float("inf")],
+        [0, float("-inf")],
+        [float("-inf"), 0]
+    ])
+    def test_div_zero_and_inf(self, a, b, c):
+        assert math.isnan(self.calc.div(a, b)) == True
 
 
 class TestPros:
+    def setup_class(self):
+        self.calc = Calc()
+
+    def setup(self):
+        pass
+
     # 流程示例
     @allure.story("流程测试")
     def test_process(self):
