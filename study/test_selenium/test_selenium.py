@@ -11,6 +11,3 @@ def test_selenium():
     driver = webdriver.Chrome()
     driver.get("https://www.baidu.com/")
 
-
-if __name__ == "__main__":
-    pass
