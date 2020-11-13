@@ -9,3 +9,7 @@
 ### web 企业微信实战（一）
 ### 作业
  ./practice/selenium_wx/test_wx.py
+ 
+ ### app 企业微信实战（一）
+ ### 作业
+  ./practice/appium_wx
