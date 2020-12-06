@@ -13,3 +13,7 @@
  ### app 企业微信实战（一）
  ### 作业
   ./practice/appium_wx
+
+### 企业微信接口测试实战一
+### 作业
+./practice/service
