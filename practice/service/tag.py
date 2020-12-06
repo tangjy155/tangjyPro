@@ -9,6 +9,10 @@ import requests
 corpid = 'ww65dc6d7815f33b43'
 corpsecret = '1FGElXsNlKx7rN4oKLUKcS962j6g09c9xlUb6gWc-wQ'
 
+proxies = {
+    'http': 'http://127.0.0.1:8888',
+    'https': 'http://127.0.0.1:8888',
+}
 
 class Tag:
 
@@ -46,14 +50,22 @@ class Tag:
         print(json.dumps(r.json(), indent=2))
         return r
 
-    def delete(self, group_ids=[], tag_ids=[]):
+    def delete(self, group_ids=None, tag_ids=None):
+        if tag_ids is None:
+            json_data = {
+                'group_id': group_ids
+            }
+        elif group_ids is None:
+            json_data = {
+                'tag_id': tag_ids
+            }
+
         r = requests.post(
             'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/del_corp_tag',
             params={'access_token': self.token},
-            json={
-                'group_id': group_ids,
-                'tag_id': tag_ids
-            }
+            json=json_data
+            # proxies=proxies,
+            # verify=False
         )
         print(json.dumps(r.json(), indent=2))
         return r
