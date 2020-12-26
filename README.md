@@ -17,3 +17,8 @@
 ### 企业微信接口测试实战一
 ### 作业
 ./practice/service
+
+
+### 测试平台开发一
+### 作业
+./practice/platform
